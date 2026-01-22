@@ -1,0 +1,27 @@
+[project]
+name = "fm-letta"
+version = "0.1.0"
+description = "Letta Framework for BBH Benchmarking"
+dependencies = [
+    "datasets>=2.0.0",
+    "requests>=2.25.0",
+    "pyyaml>=6.0.0",
+    "openai>=1.0.0",
+    "letta-client>=0.1.275",
+]
+requires-python = ">=3.12"
+setup = "ready"
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=7.0.0",
+    "black>=22.0.0",
+    "isort>=5.10.0"
+]
+
+# BBH Framework Configuration
+[tool.bbh]
+framework_name = "Letta"
+complexity = "complex"
+requires_server = true
+server_port = 8283

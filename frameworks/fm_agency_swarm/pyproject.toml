@@ -1,0 +1,16 @@
+[project]
+name = "fm-agency-swarm-bbh"
+version = "0.1.0"
+description = "Agency-swarm framework integration for BigBenchHard evaluation"
+dependencies = [
+    "datasets>=2.14.0",
+    "requests>=2.28.0",
+    "pyyaml>=6.0",
+    "openai>=1.0.0",
+    "agency-swarm>=0.2.0",
+]
+
+# BBH Framework Metadata
+[tool.bbh]
+setup = "ready"
+framework_name = "Agency-swarm"

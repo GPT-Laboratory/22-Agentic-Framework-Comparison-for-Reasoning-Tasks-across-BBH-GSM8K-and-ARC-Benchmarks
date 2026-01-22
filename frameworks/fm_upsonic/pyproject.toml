@@ -1,0 +1,11 @@
+[project]
+name = "fm-upsonic"
+version = "0.1.0"
+description = "Upsonic framework integration for BBH benchmarking"
+requires-python = ">=3.10.23"
+dependencies = [
+    "upsonic>=0.15.0",
+    "datasets==3.6.0",
+    "requests>=2.25.0",
+]
+setup = "ready"

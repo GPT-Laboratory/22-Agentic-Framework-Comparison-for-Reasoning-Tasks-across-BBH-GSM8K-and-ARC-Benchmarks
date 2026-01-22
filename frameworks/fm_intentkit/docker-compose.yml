@@ -1,0 +1,85 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: bbh_intentkit_postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=intentkit
+      - POSTGRES_USER=intentkit_user
+      - POSTGRES_PASSWORD=intentkit_secure_2024
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"  # Use different port to avoid conflicts
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U intentkit_user -d intentkit"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  redis:
+    image: redis:7-alpine
+    container_name: bbh_intentkit_redis
+    restart: unless-stopped
+    ports:
+      - "6380:6379"  # Use different port to avoid conflicts
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  intentkit:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bbh_intentkit_server
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      # Database configuration
+      - DATABASE_URL=postgresql://intentkit_user:intentkit_secure_2024@postgres:5432/intentkit
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=intentkit_user
+      - POSTGRES_PASSWORD=intentkit_secure_2024
+      - POSTGRES_DB=intentkit
+      
+      # Redis configuration
+      - REDIS_URL=redis://redis:6379
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      
+      # IntentKit configuration
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - ENVIRONMENT=development
+      - LOG_LEVEL=INFO
+      
+      # Security
+      - SECRET_KEY=bbh_intentkit_secret_key_2024_secure
+      - CORS_ORIGINS=["http://localhost:8000"]
+      
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    volumes:
+      - intentkit_data:/app/data
+
+volumes:
+  postgres_data:
+  redis_data:
+  intentkit_data:

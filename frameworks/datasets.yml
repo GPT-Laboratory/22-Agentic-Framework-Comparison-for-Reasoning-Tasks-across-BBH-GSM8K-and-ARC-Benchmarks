@@ -1,0 +1,89 @@
+# Multi-Dataset Configuration for Benchmarking
+# Defines dataset specifications, splits, and extraction methods
+
+datasets:
+  bbh:
+    name: "Big Bench Hard"
+    repo: "maveriq/bigbenchhard"
+    splits:
+      train: "train"
+    task_list: [
+      "boolean_expressions", "causal_judgement", "date_understanding", 
+      "disambiguation_qa", "dyck_languages", "formal_fallacies",
+      "geometric_shapes", "hyperbaton", "logical_deduction_five_objects",
+      "logical_deduction_seven_objects", "logical_deduction_three_objects",
+      "movie_recommendation", "multistep_arithmetic_two", "navigate",
+      "object_counting", "penguins_in_a_table", "reasoning_about_colored_objects",
+      "ruin_names", "salient_translation_error_detection", "snarks",
+      "sports_understanding", "temporal_sequences", "tracking_shuffled_objects_five_objects",
+      "tracking_shuffled_objects_seven_objects", "tracking_shuffled_objects_three_objects",
+      "web_of_lies", "word_sorting"
+    ]
+    modes:
+      sample:
+        tasks: 3  # First 3 tasks
+        questions_per_task: 2  # First 3 questions per task
+      full:
+        tasks: -1  # All tasks
+        questions_per_task: -1  # All questions per task
+    prompting:
+      n_shots: 3
+      enable_cot: true
+    input_field: "input"
+    target_field: "target"
+    extraction:
+      model: "gpt-5.2"
+      max_tokens: 224
+      temperature: 0
+      timeout: 500
+
+  gsm8k:
+    name: "Grade School Math 8K"
+    repo: "openai/gsm8k"
+    config: "main"  # Required config for GSM8K dataset
+    splits:
+      train: "train"
+      test: "test"
+    modes:
+      sample:
+        tasks: 1  # Only one "task" (the dataset itself)
+        questions_per_task: 3
+      full:
+        tasks: 1
+        questions_per_task: -1  # All questions
+    prompting:
+      n_shots: 8
+      enable_cot: false
+    input_field: "question"
+    target_field: "answer"
+    extraction:
+      model: "gpt-5.2"
+      max_tokens: 256
+      temperature: 0
+      timeout: 500
+
+  arc:
+    name: "AI2 Reasoning Challenge"
+    repo: "allenai/ai2_arc"
+    splits:
+      train: "train"
+      validation: "validation"
+      test: "test"
+    task_list: ["ARC-Easy", "ARC-Challenge"]
+    modes:
+      sample:
+        tasks: 1  # ARC-Easy only
+        questions_per_task: 3
+      full:
+        tasks: -1  # Both ARC-Easy and ARC-Challenge
+        questions_per_task: -1  # All questions
+    prompting:
+      n_shots: 5
+      enable_cot: true
+    input_field: "question"
+    target_field: "answerKey"
+    extraction:
+      model: "gpt-5.2"
+      max_tokens: 224
+      temperature: 0
+      timeout: 500

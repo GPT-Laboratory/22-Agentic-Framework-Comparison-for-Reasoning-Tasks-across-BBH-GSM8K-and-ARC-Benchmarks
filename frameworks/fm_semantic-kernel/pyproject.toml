@@ -1,0 +1,10 @@
+[project]
+name = "fm-semantic-kernel"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.13.5"
+dependencies = [
+    "semantic-kernel>=1.32.2",
+    "datasets==3.6.0",
+]
+setup = "ready"

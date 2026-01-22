@@ -1,0 +1,5 @@
+llm:
+  api_type: "openai"
+  model: "gpt-4.1-mini"
+  base_url: "https://api.openai.com/v1"
+  api_key: "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"

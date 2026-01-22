@@ -1,0 +1,40 @@
+[
+    {
+        "id": "asst_Shl6Fmm7tX30V6Dq3QrSsMtL",
+        "created_at": 1756841941,
+        "description": "Test agent for validation",
+        "instructions": "You are a test agent.",
+        "metadata": {},
+        "model": "gpt-4o-mini",
+        "name": "TestAgent",
+        "object": "assistant",
+        "tools": [],
+        "response_format": "auto",
+        "temperature": 0.3,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0,
+        "reasoning_effort": null
+    },
+    {
+        "id": "asst_rYdqkhSLA0h01xHATtD7UKxr",
+        "created_at": 1756841963,
+        "description": "Expert reasoning agent specialized in solving complex logical, mathematical, and analytical problems step-by-step.",
+        "instructions": "You are an expert problem solver with strong analytical skills who excels at multi-step reasoning tasks. Answer questions accurately and show clear reasoning.",
+        "metadata": {},
+        "model": "gpt-4.1-mini",
+        "name": "BBHSolver",
+        "object": "assistant",
+        "tools": [],
+        "response_format": "auto",
+        "temperature": 0.0,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0,
+        "reasoning_effort": null
+    }
+]

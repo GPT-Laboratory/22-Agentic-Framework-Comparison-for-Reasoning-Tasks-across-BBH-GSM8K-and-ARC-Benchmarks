@@ -1,0 +1,28 @@
+# N8N Data Directory
+n8n_data/
+
+# Environment Files
+.env
+.env.local
+
+# Python Virtual Environment
+.venv/
+
+# UV Lock File
+uv.lock
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Output Files
+outputs/
+
+# IDE Files
+.vscode/
+.idea/
+
+# OS Files
+.DS_Store
+Thumbs.db

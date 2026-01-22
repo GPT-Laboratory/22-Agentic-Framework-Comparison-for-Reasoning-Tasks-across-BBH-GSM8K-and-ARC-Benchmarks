@@ -1,0 +1,19 @@
+[project]
+name = "fm-n8n"
+version = "0.1.0"
+description = "N8N framework implementation for BBH benchmarking"
+requires-python = ">=3.12"
+dependencies = [
+    "requests>=2.25.0",
+    "datasets==3.6.0",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0.0",
+]
+setup = "notready"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]

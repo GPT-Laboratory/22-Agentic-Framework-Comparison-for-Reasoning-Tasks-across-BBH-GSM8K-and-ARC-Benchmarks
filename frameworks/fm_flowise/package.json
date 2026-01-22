@@ -1,0 +1,15 @@
+{
+  "name": "fm-flowise",
+  "version": "1.0.0",
+  "description": "Flowise framework for BBH benchmarking",
+  "private": true,
+  "volta": {
+    "node": "20.19.5",
+    "yarn": "4.9.4"
+  },
+  "dependencies": {
+    "bun": "^1.2.20",
+    "flowise": "^3.0.5",
+    "turndown": "^7.2.1"
+  }
+}

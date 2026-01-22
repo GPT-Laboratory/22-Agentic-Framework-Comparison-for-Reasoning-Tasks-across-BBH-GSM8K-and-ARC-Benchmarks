@@ -1,0 +1,48 @@
+# AgentZero BBH Evaluation Configuration
+# Minimal headless setup for reasoning tasks
+
+# Model configuration (uses BBH_MODEL env var or default)
+models:
+  chat_llm:
+    provider: "openai"
+    model: "gpt-4.1-nano"  # Default, overridden by BBH_MODEL
+    temperature: 0.1
+    context_length: 32000
+  
+  utility_llm:
+    provider: "openai" 
+    model: "gpt-4.1-mini"
+    temperature: 0.0
+    
+  embedding_llm:
+    provider: "openai"
+    model: "text-embedding-3-small"
+
+# Disable web interface components
+web:
+  enabled: false
+  
+# Restrict tools for BBH evaluation (reasoning only)
+tools:
+  # Disable autonomous code execution for controlled evaluation
+  code_execution: false
+  web_search: false
+  file_operations: false
+  docker_tools: false
+  
+  # Enable basic reasoning tools only
+  knowledge_retrieval: true
+  memory_access: true
+  text_processing: true
+
+# Memory and knowledge settings
+agent:
+  prompts_subdir: "default"
+  memory_subdir: "bbh_eval" 
+  knowledge_subdir: "default"
+  
+# BBH-specific settings
+bbh:
+  enable_cot: true
+  n_shots: 3
+  extraction_model: "gpt-4.1-mini"

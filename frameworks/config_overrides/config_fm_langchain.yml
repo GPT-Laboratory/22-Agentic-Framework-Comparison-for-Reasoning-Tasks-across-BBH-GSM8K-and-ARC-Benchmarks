@@ -1,0 +1,41 @@
+# LangChain-only Configuration
+# Based on main config.yml but only runs fm_langchain
+
+# Framework selection - only LangChain
+frameworks_to_run:
+  - "fm_langchain"
+
+# Dataset selection - test with ARC dataset
+datasets_to_run:
+  - "arc"
+
+commons:
+  # Run mode configuration
+  sample_mode: true            # true: first 3 tasks, false: all tasks
+  continue_mode: false         # true: continue from latest results file
+  
+  # Evaluation settings
+  n_shots: 3                   # Number of few-shot examples
+  enable_cot: true            # Enable chain-of-thought prompting
+  
+  # Task selection (leave empty to use default bbh_task_names)
+  tasks: []                   # Custom task list, empty means use all BBH tasks
+  
+  # Model settings (can be overridden per framework)
+  model: "gpt-4.1-mini"       # Default model name
+  
+  # Output settings
+  save_progress: true         # Save progress after each question
+  output_dir: "outputs"       # Directory for results files
+  
+  # Answer extraction settings (enhanced with question context)
+  extraction_agent:
+    model: "gpt-4.1-mini"      # Model used for answer extraction
+    max_tokens: 50             # Maximum tokens for extraction response
+    temperature: 0             # Temperature for extraction (0 = deterministic)
+    timeout: 30               # API timeout in seconds
+
+# Framework-specific overrides
+frameworks:
+  fm_langchain:
+    model: "gpt-4.1-mini"

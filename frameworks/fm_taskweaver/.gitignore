@@ -1,0 +1,29 @@
+# TaskWeaver Framework - Git Ignore
+
+# Sensitive configuration files
+taskweaver_config.json
+
+# TaskWeaver runtime directories
+taskweaver_project/
+workspace/
+logs/
+
+# Python virtual environment
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# UV package manager
+uv.lock
+
+# TaskWeaver repository (cloned during setup)
+taskweaver_repo/
+
+# Output and results
+outputs/
+*.log
+
+# Temporary files
+.DS_Store
+Thumbs.db

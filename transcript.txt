@@ -1,0 +1,65 @@
+Impromptu Zoom Meeting - January 16
+VIEW RECORDING - 6 mins (No highlights): https://fathom.video/share/PPUGHizi2ATs62QoVJAmizQbTE5NtchX
+
+---
+
+0:00 - Zeeshan Rasheed
+  How are you doing? I'm good. meeting is being recorded.
+
+0:04 - Abhijeet Gandhi (abhijeetgandhi02@gmail.com)
+  Thank you. Awesome. Tell me about the project and we will try to implement it as soon as possible.
+
+0:14 - Zeeshan Rasheed
+  Yeah, so it's, it's maybe, okay, I can share the code. So the thing we need to do is like, these are very basic, basic thing.  Maybe actually first thing we need to add the, we need to change the token size. I don't know, it's somewhere here.  So before it was 50 token size, but this time we need, I will write in the email for BBH, we have around 224 token size.  So it just changed the number. It's somewhere here. Yeah. And for GSM8K, we set the token size for 256.  56. And the. For ARK, we set the token size, I forget, 224, something like this. So first thing, we need to change the token size.  Before, it was 50, 50 token size. The second thing, we can change the timestamp as well. Before, it was, I think, again, 50, but now I think we can make it 500.  So it's also, I don't, I forget where it used to be. But yeah, you know this. It's somewhere here in the code, which file.  You can't see my screen?
+
+1:37 - Abhijeet Gandhi (abhijeetgandhi02@gmail.com)
+  No.
+  SCREEN SHARING: Zeeshan started screen sharing - WATCH: https://fathom.video/share/PPUGHizi2ATs62QoVJAmizQbTE5NtchX?timestamp=103.430422
+
+1:38 - Zeeshan Rasheed
+  Ah, because, sorry, I didn't share the screen. How can you see that? Okay. Yeah, yeah, yeah. Okay, now, can you see now?
+
+1:48 - Abhijeet Gandhi (abhijeetgandhi02@gmail.com)
+  Yeah.
+
+1:49 - Zeeshan Rasheed
+  Okay. Okay, so I'm, yeah, I'm just looking where we changed the token size and stuff. But anyway, you can, you know this.
+
+2:00 - Abhijeet Gandhi (abhijeetgandhi02@gmail.com)
+  Yeah, we'll change the token size. You can drop me like a quick WhatsApp message, like for which model, what is the token size you want to set.
+
+2:09 - Zeeshan Rasheed
+  yeah, we'll just change it. here we go. Here they have like timeout, it was 30. So I think 30 is, we have 500.  Token size we have, let's say, for each different. For BBH benchmark, it's 224. For GMs, it's 250. I will send an email, all the detail.  And here we don't use GPT 4.1, but we use GPT 5.2, the recent one.
+
+2:36 - Abhijeet Gandhi (abhijeetgandhi02@gmail.com)
+  Oh, yeah.
+
+2:40 - Zeeshan Rasheed
+  And yeah, yeah, change the models. Yeah, yeah, yeah. And, and this, you know, wait a moment, actually GPT 4.1, but it was with the, this time we ate this web search as well.  okay yeah so so this one I will send an email as well and one more thing that Abhijeet here I think let's say we open the open this one of the framework so they don't have any agents I mean you know at least we have two agents you you get my point that the prompt for two agents maybe one two line agents okay agent one and agent two and then you get my point I don't know sorry I didn't have a sense yeah I mean that let's say this is the open a swarm code and we usually let's say if I open the other maybe you punch this so let's say we have this agent that run evaluation on blah blah blah so now we have I think one  Yeah, we have at least two agents. You get my point. One is run the task for reasoning and the other is for verify or what?
+
+4:17 - Abhijeet Gandhi (abhijeetgandhi02@gmail.com)
+  No, I think that is going to be two agents. But yeah, I'll take the code and let them know.
+
+4:23 - Zeeshan Rasheed
+  Like, you know, there are multiple agents being used or just one. Yeah, but we don't use, we just use two, not multiple.
+
+4:31 - Abhijeet Gandhi (abhijeetgandhi02@gmail.com)
+  We just use two for each framework.
+
+4:36 - Zeeshan Rasheed
+  Yeah, the last thing, Abhijeet, is it possible, like, now we let, just a minute, let me, because we just, we run something.  Just a minute. So, that So here we see the it shows the time that it's taken so is it also possible that it shows that how many token they use for this for this query yeah yeah yeah yeah yeah so that's it we want to know that okay.  This query they use how many token similar the time yeah so yeah yeah so what I can do I can send this is all we need to do so I can send you email so we have a record so it's it's might take maybe one hour yeah maybe less I don't know because it's small changes okay yeah that's it so is it is it possible if we can then today or maybe tomorrow morning.
+
+5:59 - Abhijeet Gandhi (abhijeetgandhi02@gmail.com)
+  I'll call it. Yeah, we will try to get it done tonight only by tonight, but yeah, if not, was tomorrow morning.
+
+6:08 - Zeeshan Rasheed
+  Yeah, yeah, good. Okay, then I can send email.
+
+6:13 - Abhijeet Gandhi (abhijeetgandhi02@gmail.com)
+  Awesome.
+
+6:14 - Zeeshan Rasheed
+  Okay, thank you. All the best.
+
+6:18 - Abhijeet Gandhi (abhijeetgandhi02@gmail.com)
+  Thank you.

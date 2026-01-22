@@ -1,0 +1,13 @@
+[project]
+name = "fm-praisonai"
+version = "0.1.0"
+description = "PraisonAI framework implementation for BBH benchmarking"
+requires-python = ">=3.11"
+dependencies = [
+    "datasets==3.6.0",
+    "requests>=2.25.0",
+    "pyyaml",
+    "openai>=1.99.0",
+    "praisonaiagents>=0.0.161",
+]
+setup = "ready"

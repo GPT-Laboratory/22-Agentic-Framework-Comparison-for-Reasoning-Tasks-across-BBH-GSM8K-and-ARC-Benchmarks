@@ -1,0 +1,10 @@
+[project]
+name = "fm-camel-ai"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12.11"
+dependencies = [
+    "camel-ai>=0.2.73",
+    "datasets==3.6.0",
+]
+setup = "ready"

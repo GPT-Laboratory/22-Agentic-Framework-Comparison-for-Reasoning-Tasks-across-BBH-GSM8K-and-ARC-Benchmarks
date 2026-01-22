@@ -1,0 +1,10 @@
+[project]
+name = "fm-metagpt"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.9.23"
+dependencies = [
+    "metagpt[search-google]>=0.8.0",
+    "datasets>=1",
+]
+setup = "ready"

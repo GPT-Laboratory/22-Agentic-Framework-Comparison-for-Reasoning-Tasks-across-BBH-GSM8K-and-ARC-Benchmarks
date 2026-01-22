@@ -1,0 +1,28 @@
+[project]
+name = "fm-mastra"
+version = "0.1.0"
+description = "Mastra framework integration for multi-dataset evaluation"
+authors = [
+    {name = "Multi-Dataset Evaluation Team"}
+]
+dependencies = [
+    "datasets>=3.0.0",
+    "requests>=2.32.0", 
+    "pyyaml>=6.0.0",
+    "openai>=1.54.0"
+]
+requires-python = ">=3.13"
+setup = "ready"
+
+[project.optional-dependencies]
+dev = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+
+[tool.uv]
+dev-dependencies = []

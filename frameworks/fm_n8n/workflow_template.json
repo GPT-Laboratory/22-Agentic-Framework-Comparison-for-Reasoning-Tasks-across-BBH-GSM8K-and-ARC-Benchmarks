@@ -1,0 +1,99 @@
+{
+  "name": "BBH Agent Template",
+  "nodes": [
+    {
+      "parameters": {
+        "model": "={{ $('Webhook').item.json.body.model }}",
+        "options": {}
+      },
+      "id": "openai-model-node",
+      "name": "OpenAI Model", 
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [512, 240],
+      "credentials": {
+        "openAiApi": {
+          "id": "CREDENTIAL_ID_PLACEHOLDER",
+          "name": "OpenAI BBH Credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.body.prompt }}",
+        "options": {
+          "systemMessage": "="
+        }
+      },
+      "id": "agent-node",
+      "name": "Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [512, 32]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "57d33963-fa0b-44fb-a697-d194b992be65",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [288, 32],
+      "id": "webhook-node",
+      "name": "Webhook",
+      "webhookId": "57d33963-fa0b-44fb-a697-d194b992be65"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [864, 32],
+      "id": "respond-node",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "connections": {
+    "OpenAI Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

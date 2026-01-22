@@ -1,0 +1,12 @@
+[project]
+name = "fm-openai-agents"
+version = "0.1.0"
+description = "OpenAI Agents framework implementation for BBH benchmarking"
+requires-python = ">=3.11.0"
+dependencies = [
+    "datasets==3.6.0",
+    "requests>=2.25.0",
+    "pyyaml>=6.0",
+    "openai-agents==0.2.9",
+]
+setup = "ready"

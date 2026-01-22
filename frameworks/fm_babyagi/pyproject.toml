@@ -1,0 +1,11 @@
+[project]
+name = "fm_babyagi"
+version = "0.1.0"
+description = "BabyAGI framework for BBH benchmarking"
+dependencies = [
+    "datasets",
+    "requests", 
+    "pyyaml",
+    "openai"
+]
+setup = "ready"

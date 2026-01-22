@@ -1,0 +1,31 @@
+[project]
+name = "fm_agentzero"
+version = "0.1.0"
+description = "AgentZero integration for BigBenchHard evaluation"
+requires-python = ">=3.12"
+
+dependencies = [
+    # Core BBH evaluation dependencies only
+    "datasets",
+    "requests",
+    "pyyaml",
+    "openai",
+    "nest-asyncio",
+    "python-dotenv",
+    "docker==7.1.0",
+    "flask==3.0.3",
+    "tiktoken==0.8.0",
+    "litellm==1.74",
+    "pathspec>=0.12.1",
+    "psutil>=7.0.0",
+    "gitpython==3.1.43",
+    "markdownify==1.1.0",
+]
+setup = "ready"
+
+[tool.uv]
+dev-dependencies = []
+
+# BBH evaluation configuration metadata
+[project.optional-dependencies]
+dev = []  # No additional dev dependencies needed

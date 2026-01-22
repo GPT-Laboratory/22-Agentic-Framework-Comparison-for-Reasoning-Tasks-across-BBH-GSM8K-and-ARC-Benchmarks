@@ -1,0 +1,103 @@
+# BBH Benchmarking Configuration
+# Common settings shared across all frameworks, with framework-specific overrides
+
+# Framework selection (leave empty to run all frameworks)
+frameworks_to_run:
+  - "fm_agency_swarm"
+  - "fm_agentzero"
+  - "fm_anus"
+  - "fm_autogen"
+  - "fm_babyagi"
+  - "fm_autogpt"
+  - "fm_camel-ai"
+  - "fm_crewai"
+  - "fm_google_adk"
+  - "fm_intentkit"
+  - "fm_langchain"
+  - "fm_langgraph"
+  - "fm_letta"
+  - "fm_livekit"
+  - "fm_mastra"
+  - "fm_metagpt"
+  - "fm_openai-agents"
+  - "fm_praisonai"
+  - "fm_pydantic"
+  - "fm_qwen_agent"
+  - "fm_semantic-kernel"
+  - "fm_superagi"
+  - "fm_swarm"
+  - "fm_upsonic"
+  - "fm_taskweaver"
+
+datasets_to_run:
+  - "bbh"
+  - "arc"
+  - "gsm8k"
+
+commons:
+  # Run mode configuration
+  sample_mode: false            # true: first 3 tasks, false: all tasks
+  continue_mode: false         # true: continue from latest results file
+  
+  # Evaluation settings
+  n_shots: 3                   # Number of few-shot examples
+  enable_cot: true            # Enable chain-of-thought prompting
+  
+  # Model settings (can be overridden per framework)
+  model: "gpt-5.2"       # Default model name
+  
+  # Output settings
+  save_progress: true         # Save progress after each question
+  output_dir: "outputs"       # Directory for results files
+  
+  # Answer extraction settings (enhanced with question context)
+  extraction_agent:
+    model: "gpt-5.2"      # Model used for answer extraction
+    max_tokens: 50             # Maximum tokens for extraction response
+    temperature: 0             # Temperature for extraction (0 = deterministic)
+    timeout: 30               # API timeout in seconds
+    # Note: Extraction now uses original question context to better map
+    # agent responses to target classes (e.g., "raining" -> "(B)" for weather question)
+
+# Framework-specific overrides
+# Each framework can override any commons setting
+frameworks:
+  fm_agentzero:
+    model: "gpt-5.2"
+  fm_autogpt:
+    model: "gpt-4.1-nano"
+  fm_livekit:
+    model: "gpt-4o-mini"
+  fm_openai-agents:
+    model: "gpt-4.1-nano"
+  fm_taskweaver:
+    model: "gpt-5.2"
+
+# Example configurations for different scenarios:
+#
+# For full benchmarking:
+# commons:
+#   sample_mode: false
+#   tasks: []  # all tasks
+#
+# For specific frameworks only:
+# frameworks_to_run: ["fm_autogen", "fm_swarm", "fm_metagpt"]
+#
+# For specific tasks only:
+# commons:
+#   sample_mode: false
+#   tasks: ["boolean_expressions", "causal_judgement", "date_understanding"]
+#
+# For different models per framework:
+# frameworks:
+#   fm_autogen:
+#     model: "gpt-4.1-nano"
+#   fm_swarm:
+#     model: "gpt-4o-mini"
+#
+# For custom extraction settings:
+# commons:
+#   extraction_agent:
+#     model: "gpt-4o-mini"    # Use faster/cheaper model for extraction
+#     max_tokens: 100         # Allow longer extraction responses
+#     temperature: 0.1        # Add slight randomness

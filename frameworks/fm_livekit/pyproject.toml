@@ -1,0 +1,14 @@
+[project]
+name = "fm_livekit"
+version = "0.1.0"
+description = "LiveKit Agents integration for BBH benchmarking"
+dependencies = [
+    "datasets",
+    "requests",
+    "pyyaml",
+    "openai",
+    "livekit-agents[openai]~=1.0",
+]
+
+[metadata]
+setup = "ready"

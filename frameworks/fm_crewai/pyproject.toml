@@ -1,0 +1,10 @@
+[project]
+name = "fm-crewai"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.13.5"
+dependencies = [
+    "crewai>=0.152.0",
+    "datasets==3.6.0",
+]
+setup = "ready"
