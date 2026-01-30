@@ -2,9 +2,9 @@
 # Common settings shared across all frameworks, with framework-specific overrides
 
 # Framework selection (leave empty to run all frameworks)
-frameworks_to_run:
-  - "fm_agency_swarm"
+frameworks_to_run:  
   - "fm_agentzero"
+  - "fm_agency_swarm"
   - "fm_anus"
   - "fm_autogen"
   - "fm_babyagi"
@@ -53,9 +53,9 @@ commons:
   # Answer extraction settings (enhanced with question context)
   extraction_agent:
     model: "gpt-5.2"      # Model used for answer extraction
-    max_tokens: 50             # Maximum tokens for extraction response
+    max_tokens: 500             # Maximum tokens for extraction response
     temperature: 0             # Temperature for extraction (0 = deterministic)
-    timeout: 30               # API timeout in seconds
+    timeout: 224              # API timeout in seconds
     # Note: Extraction now uses original question context to better map
     # agent responses to target classes (e.g., "raining" -> "(B)" for weather question)
 

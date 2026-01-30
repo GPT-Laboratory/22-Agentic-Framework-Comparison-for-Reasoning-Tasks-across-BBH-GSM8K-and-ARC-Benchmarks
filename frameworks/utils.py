@@ -335,7 +335,7 @@ def extract_answer(agent_output, target_classes, datatype, original_question=Non
     if not extraction_config:
         extraction_config = {}
     model = extraction_config.get('model', 'gpt-4.1-mini')
-    max_tokens = extraction_config.get('max_tokens', 50)
+    max_tokens = extraction_config.get('max_completion_tokens', 50)
     temperature = extraction_config.get('temperature', 0)
     timeout = extraction_config.get('timeout', 30)
     
@@ -428,7 +428,7 @@ Extracted answer:"""
                 json={
                     "model": model,
                     "messages": messages,
-                    "max_tokens": max_tokens,
+                    "max_completion_tokens": max_tokens,
                     "temperature": temperature
                 },
                 timeout=timeout
@@ -461,7 +461,8 @@ Extracted answer:"""
                     error_msg = f"'{extracted}' not in target classes -> {target_classes}"
             else:
                 error_msg = f"OpenAI API error {response.status_code}"
-                
+                print("OPENAI ERROR BODY:", response.text)
+            error_msg = f"OpenAI API error {response.status_code}: {response.text}"
         except Exception as e:
             error_msg = f"Extraction error: {e}"
         
