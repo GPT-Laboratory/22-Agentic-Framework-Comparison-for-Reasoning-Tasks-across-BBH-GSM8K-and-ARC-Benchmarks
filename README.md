@@ -1,62 +1,36 @@
 # Multi-Dataset Agentic Framework Evaluation
 
-A dataset-agnostic benchmarking repository for evaluating multiple agentic AI frameworks across various reasoning datasets. This project enables systematic comparison of different agent architectures' reasoning capabilities through a modular, configuration-driven approach that supports multiple datasets including BBH, GSM8K, and ARC.
+A benchmarking repository for evaluating multiple agentic AI frameworks across reasoning datasets. This project enables a systematic comparison of different agent architectures through a modular, configuration-driven approach, supporting multiple benchmarks including **BBH**, **GSM8K**, and **ARC**.
 
-## 🎯 Performance Overview
 
-### Multi-Dataset Analysis Results
+## Selected Agentic Frameworks for Reasoning Comparison
 
-![BBH Analysis](analysis/bbh_analysis.png)
-**BBH (Big Bench Hard)**: Framework performance, accuracy distribution, and task-level heatmap across 23 challenging reasoning tasks.
+The following **22 agentic frameworks** were selected and implemented for reasoning-task comparison across our benchmarks.
 
-![ARC Analysis](analysis/arc_analysis.png)
-**ARC (AI2 Reasoning Challenge)**: Framework performance and accuracy distribution across science reasoning questions.
-
-![GSM8K Analysis](analysis/gsm8k_analysis.png)
-**GSM8K (Grade School Math)**: Framework performance and accuracy distribution across mathematical word problems.
-
-![GSM8K Reasoning Analysis](analysis/gsm8k_reasoning_analysis.png)
-**GSM8K Reasoning Quality**: Analysis of reasoning alignment scores showing how well frameworks explain their mathematical reasoning.
-
-![Overall Comparison](analysis/overall_comparison.png)
-**Cross-Dataset Comparison**: Overall framework rankings and performance heatmap across all three datasets.
-
-📊 **[View complete interactive analysis in Jupyter notebook](analysis/analysis.ipynb)**
-
-## Overview
-
-This repository implements and evaluates **multiple agentic frameworks** across **various reasoning datasets** through a modular loader system. The evaluation supports datasets like BIG Bench Hard (BBH), Grade School Math 8K (GSM8K), and AI2 Reasoning Challenge (ARC), using configurable few-shot prompting and chain-of-thought reasoning to assess each framework's performance.
-
-## Supported Frameworks
-
-The following 21 agentic frameworks are implemented, with 20 currently active for evaluation:
-
-| Framework | Status | Description |
-|-----------|--------|-------------|
-| **AgentZero** | ✅ Active | Dynamic framework leveraging OS as tool, emphasizing transparency and real-world automation |
-| **Anus** | ✅ Active | Experimental lightweight agent framework for research and development |
-| **AutoGen** | ✅ Active | Microsoft's conversational multi-agent framework with role-based collaboration and low-code studio |
-| **CAMEL-AI** | ✅ Active | Communicative agents for "mind" exploration with role-playing and autonomous cooperation capabilities |
-| **CrewAI** | ✅ Active | Enterprise-ready collaborative framework with specialized role-based agents and 700+ integrations |
-| **Flowise** | ✅ Active | Visual drag-and-drop LLM orchestration tool with no-code multi-agent system building |
-| **Google ADK** | ✅ Active | Google's Agent Development Kit with multi-agent design, rich tool ecosystem, and streaming capabilities |
-| **IntentKit** | ✅ Active | Modular framework for AI agents with Web2/Web3 capabilities and blockchain protocol integration |
-| **LangChain** | ✅ Active | Comprehensive LLM application framework with chains, memory management, and RAG support |
-| **LangGraph** | ✅ Active | Low-level agent orchestration framework for controllable, stateful agents with memory and streaming |
-| **LaVague** | ❌ Not Implemented | UI automation framework for web interactions - specialized for UI tasks, not text-based BBH benchmarks |
-| **Letta** | ✅ Active | Advanced memory-augmented framework (formerly MemGPT) with persistent state and self-editing memory |
-| **LiveKit** | ❌ Not Implemented | Real-time voice/video agent platform - focused on media and live data, not text reasoning tasks |
-| **Mastra** | ✅ Active | TypeScript-native framework with model routing, workflow engine, RAG support, and evaluation system |
-| **MetaGPT** | ✅ Active | Meta programming framework for automated software development with multi-agent collaboration |
-| **n8n** | ❌ Not Implemented | Workflow automation platform - not an agentic framework, requires UI interaction for setup |
-| **OPIK** | ❌ Not Implemented | LLM evaluation and monitoring platform - not an agentic framework, used for tracking/evaluation |
-| **PraisonAI** | ✅ Active | Production-ready multi-agent framework with low-code approach, self-reflection, and voice interaction |
-| **Pydantic** | ✅ Active | Type-safe agent framework with structured data validation and robust error handling |
-| **Qwen Agent** | ✅ Active | Alibaba's multilingual agent framework with function calling, RAG, and 100+ language support |
-| **Semantic Kernel** | ✅ Active | Microsoft's enterprise AI orchestration SDK with plugin ecosystem and cross-framework compatibility |
-| **SuperAGI** | ✅ Active | Open-source autonomous agent framework with advanced planning and execution capabilities |
-| **Swarm** | ✅ Active | OpenAI's lightweight experimental multi-agent framework with simple agent handoff primitives |
-| **Upsonic** | ✅ Active | Reliability-focused framework for FinTech operations with verification layers and enterprise security |
+| Framework | Status | GitHub Stars | GitHub Link | Description |
+|-----------|--------|--------------|-------------|-------------|
+| **AutoGPT** | ✅ Active | 182k | [AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) | Autonomous agent framework focused on planning, task execution, and tool use. |
+| **TaskWeaver** | ✅ Active | 6.1k | [TaskWeaver](https://github.com/microsoft/TaskWeaver) | Microsoft’s code-first agent framework for task planning and execution. |
+| **Semantic-kernel** | ✅ Active | 27.4k | [Semantic-kernel](https://github.com/microsoft/semantic-kernel) | Microsoft’s AI orchestration SDK with plugins, planners, and memory support. |
+| **LangChain** | ✅ Active | 110k | [LangChain](https://github.com/langchain-ai/langchain) | Popular framework for building LLM applications with chains, tools, memory, and agents. |
+| **BabyAGI** | ✅ Active | 22.2k | [BabyAGI](https://github.com/yoheinakajima/babyagi) | Lightweight autonomous agent framework for task generation and execution. |
+| **Autogen** | ✅ Active | 55.3k | [Autogen](https://github.com/microsoft/autogen) | Microsoft’s multi-agent conversational framework with role-based collaboration. |
+| **Camel** | ✅ Active | 16.2k | [Camel](https://github.com/camel-ai/camel) | Role-playing multi-agent framework for communicative cooperation and reasoning. |
+| **CrewAI** | ✅ Active | 45.5k | [CrewAI](https://github.com/crewAIInc/crewAI) | Collaborative multi-agent framework with specialized roles and workflow orchestration. |
+| **SuperAGI** | ✅ Active | 17.2k | [SuperAGI](https://github.com/TransformerOptimus/SuperAGI) | Open-source autonomous agent framework with planning, memory, and tool integration. |
+| **Swarm** | ✅ Active | 21.1k | [Swarm](https://github.com/openai/swarm) | Lightweight experimental multi-agent framework with agent handoff primitives. |
+| **Agency-swarm** | ✅ Active | 4k | [Agency-swarm](https://github.com/VRSEN/agency-swarm) | Multi-agent orchestration framework designed around interacting specialized agents. |
+| **OpenAI-Agents-Python** | ✅ Active | 19.4k | [OpenAI-Agents-Python](https://github.com/openai/openai-agents-python) | OpenAI’s Python framework for building and orchestrating agent workflows. |
+| **Agent-zero** | ✅ Active | 15.9k | [Agent-zero](https://github.com/agent0ai/agent-zero) | Transparent agent framework leveraging OS-level tools and autonomous workflows. |
+| **PraisonAI** | ✅ Active | 5.6k | [PraisonAI](https://github.com/MervinPraison/PraisonAI) | Production-oriented multi-agent framework with low-code and automation support. |
+| **Qwen-Agent** | ✅ Active | 15.2k | [Qwen-Agent](https://github.com/QwenLM/Qwen-Agent) | Agent framework from QwenLM with tool use, RAG, and function-calling capabilities. |
+| **Pydantic-AI** | ✅ Active | 15.3k | [Pydantic-AI](https://github.com/pydantic/pydantic-ai) | Type-safe agent framework emphasizing structured outputs and validation. |
+| **ANUS** | ✅ Active | 6.3k | [ANUS](https://github.com/anus-dev/ANUS) | Experimental agent framework for autonomous workflows and multi-agent research. |
+| **MetaGPT** | ✅ Active | 64.9k | [MetaGPT](https://github.com/FoundationAgents/MetaGPT) | Multi-agent framework inspired by software company roles and hierarchical collaboration. |
+| **Google ADK** | ✅ Active | 18.2k | [Google ADK](https://github.com/google/adk-python) | Google’s Agent Development Kit for building structured agent systems. |
+| **Upsonic** | ✅ Active | 7.8k | [Upsonic](https://github.com/Upsonic/Upsonic) | Agent framework focused on enterprise automation, verification, and control. |
+| **Mastra** | ✅ Active | 21.8k | [Mastra](https://github.com/mastra-ai/mastra) | TypeScript-native framework for workflows, agents, and evaluation pipelines. |
+| **LangGraph** | ✅ Active | 25.9k | [LangGraph](https://github.com/langchain-ai/langgraph) | Graph-based orchestration framework for stateful and controllable agent workflows. |
 
 ## Supported Datasets
 
@@ -78,6 +52,14 @@ The system supports multiple reasoning datasets through a modular loader archite
 - **ARC-Easy and ARC-Challenge** subsets with varying difficulty
 - **Multiple choice format** with detailed explanations
 - **Focus**: Elementary and middle-school level science reasoning
+
+## 🎯 Performance Overview
+
+### Multi-Dataset Analysis Results
+
+The figure below presents a trade-off comparison of the evaluated agentic frameworks. It shows the **mean accuracy across the three benchmarks** for each framework, together with the **average time per task** and **average cost per task**. This provides an overview of framework performance in terms of **accuracy, efficiency, and computational cost**.
+
+
 
 ## Repository Structure
 
@@ -187,9 +169,6 @@ The most reliable way to run this benchmarking system:
    ./run.sh
    ```
    This runs all frameworks and datasets configured in `frameworks/config.yml`. Logs are saved to `logs/run_<timestamp>/` for each execution.
-
-7. **View results:**
-   Open `analysis/analysis.ipynb` in Jupyter to see performance graphs and detailed analysis. The notebook is automatically updated after each run.
 
 ### ⚡ Alternative Quick Demo
 ```bash
@@ -313,37 +292,8 @@ When reporting setup or runtime issues, please include:
 
 This helps maintainers quickly identify and resolve framework-specific issues.
 
-## Results Format
 
-Each evaluation generates a JSON file with:
-
-```json
-{
-  "framework": "AutoGen",
-  "model": "gpt-4.1-mini", 
-  "mode": "sample_first_3_tasks",
-  "overall_accuracy": 28.57,
-  "total_questions": 7,
-  "correct_answers": 2,
-  "detailed_results": [...]
-}
-```
-
-## Contributing
-
-### Recommended: Using Claude Code (AI-Assisted)
-
-The fastest and most reliable way to add a new framework is using Claude Code's planning capabilities:
-
-1. **Setup Claude Code**: Install from [https://www.anthropic.com/claude-code](https://www.anthropic.com/claude-code)
-2. **Switch to Plan Mode**: Enable plan mode in Claude Code
-3. **Use the custom command**: `/plan_implement_framework Let's implement this X new framework`
-4. **Review the plan**: Claude will generate a comprehensive implementation plan that often works straight out of the box, but it's recommended to review the plan to avoid going into the rabbit hole of fixing AI slop later
-5. **Execute the plan**: Follow the generated step-by-step implementation plan
-
-This approach leverages the custom `.claude/commands/plan_implement_framework.md` command that provides comprehensive planning for framework integrations, including research, architecture decisions, and implementation roadmaps.
-
-### Manual Method (Alternative)
+## Add New Framework for Expirement
 
 To add a new framework manually:
 
@@ -371,21 +321,21 @@ To add a new framework manually:
 
 > **Note**: This benchmarking system provides a standardized way to compare how different agentic frameworks handle various reasoning challenges across multiple datasets. While individual datasets may have limitations for framework evaluation, the multi-dataset approach provides broader insights into framework capabilities across different reasoning domains.
 >
-> **Extensibility**: The modular loader architecture makes it easy to add new datasets beyond the current BBH, GSM8K, and ARC support. For specialized agentic evaluations, consider datasets like **SWE-Bench** (code generation), **WebArena** (web tasks), or **AgentBench** (multi-turn decision making).
+> **Extensibility**: The modular loader architecture makes it easy to add new datasets beyond the current BBH, GSM8K, and ARC support. 
 
-## License
-
-This project is for research and educational purposes. Please respect the licenses of individual frameworks and the BBH dataset.
 
 ## Citation
 
-If you use this benchmarking framework, please cite the relevant dataset papers. For BBH:
+```md
+For further details about the experimental setup and the results of the evaluated frameworks, please refer to our paper. If you use this repository in your research, please consider citing the paper. The BibTeX entry is provided below.
 
 ```bibtex
-@article{suzgun2022challenging,
-  title={Challenging BIG-Bench Tasks and Whether Chain-of-Thought Can Solve Them},
-  author={Suzgun, Mirac and Scales, Nathan and Sch{\"a}rli, Nathanael and Gehrmann, Sebastian and Tay, Yi and Chung, Hyung Won and Chowdhery, Aakanksha and Le, Quoc V and Chi, Ed H and Zhou, Denny and others},
-  journal={arXiv preprint arXiv:2210.09261},
-  year={2022}
+@misc{rasheed2026agenticframeworksreasoningtasks,
+      title={Agentic Frameworks for Reasoning Tasks: An Empirical Study}, 
+      author={Zeeshan Rasheed and Abdul Malik Sami and Muhammad Waseem and Kai-Kristian Kemell and Mika Saari and Pekka Abrahamsson},
+      year={2026},
+      eprint={2604.16646},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2604.16646}, 
 }
-```
