@@ -328,16 +328,15 @@ To add a new framework manually:
 
 ## Citation
 
-```md
-For further details about the experimental setup and the results of the evaluated frameworks, please refer to our paper. If you use this repository in your research, please consider citing the paper. The BibTeX entry is provided below.
+For further details about the experimental setup and the results of the evaluated frameworks, please refer to our paper. If you use this repository in your research, please consider citing the paper.
 
 ```bibtex
 @misc{rasheed2026agenticframeworksreasoningtasks,
-      title={Agentic Frameworks for Reasoning Tasks: An Empirical Study}, 
-      author={Zeeshan Rasheed and Abdul Malik Sami and Muhammad Waseem and Kai-Kristian Kemell and Mika Saari and Pekka Abrahamsson},
-      year={2026},
-      eprint={2604.16646},
-      archivePrefix={arXiv},
-      primaryClass={cs.AI},
-      url={https://arxiv.org/abs/2604.16646}, 
+  title={Agentic Frameworks for Reasoning Tasks: An Empirical Study},
+  author={Zeeshan Rasheed and Abdul Malik Sami and Muhammad Waseem and Kai-Kristian Kemell and Mika Saari and Pekka Abrahamsson},
+  year={2026},
+  eprint={2604.16646},
+  archivePrefix={arXiv},
+  primaryClass={cs.AI},
+  url={https://arxiv.org/abs/2604.16646},
 }
