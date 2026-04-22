@@ -80,27 +80,28 @@ multi_dataset_benchmark/
 │   │   ├── bbh_loader.py     # Big Bench Hard loader
 │   │   ├── gsm8k_loader.py   # Grade School Math 8K loader
 │   │   └── arc_loader.py     # AI2 Reasoning Challenge loader
-│   ├── fm_agentzero/    # AgentZero implementation
-│   ├── fm_anus/         # Anus implementation
-│   ├── fm_autogen/      # AutoGen implementation
-│   ├── fm_camel-ai/     # CAMEL-AI implementation
-│   ├── fm_crewai/       # CrewAI implementation
-│   ├── fm_flowise/      # Flowise implementation
-│   ├── fm_google_adk/   # Google ADK implementation
-│   ├── fm_intentkit/    # IntentKit implementation
-│   ├── fm_langchain/    # LangChain implementation
-│   ├── fm_langgraph/    # LangGraph implementation
-│   ├── fm_letta/        # Letta implementation
-│   ├── fm_mastra/       # Mastra implementation
-│   ├── fm_metagpt/      # MetaGPT implementation
-│   ├── fm_n8n/          # n8n implementation
-│   ├── fm_praisonai/    # PraisonAI implementation
-│   ├── fm_pydantic/     # Pydantic implementation
-│   ├── fm_qwen_agent/   # Qwen Agent implementation
-│   ├── fm_semantic-kernel/ # Semantic Kernel implementation
-│   ├── fm_superagi/     # SuperAGI implementation
-│   ├── fm_swarm/        # Swarm implementation
-│   └── fm_upsonic/      # Upsonic implementation
+│   ├── fm_agentzero/           # Agent-zero implementation
+│   ├── fm_agency-swarm/        # Agency-swarm implementation
+│   ├── fm_anus/                # ANUS implementation
+│   ├── fm_autogen/             # AutoGen implementation
+│   ├── fm_autogpt/             # AutoGPT implementation
+│   ├── fm_babyagi/             # BabyAGI implementation
+│   ├── fm_camel-ai/            # Camel implementation
+│   ├── fm_crewai/              # CrewAI implementation
+│   ├── fm_google_adk/          # Google ADK implementation
+│   ├── fm_langchain/           # LangChain implementation
+│   ├── fm_langgraph/           # LangGraph implementation
+│   ├── fm_mastra/              # Mastra implementation
+│   ├── fm_metagpt/             # MetaGPT implementation
+│   ├── fm_openai-agents-python/ # OpenAI-Agents-Python implementation
+│   ├── fm_praisonai/           # PraisonAI implementation
+│   ├── fm_pydantic/            # Pydantic-AI implementation
+│   ├── fm_qwen_agent/          # Qwen-Agent implementation
+│   ├── fm_semantic-kernel/     # Semantic-kernel implementation
+│   ├── fm_superagi/            # SuperAGI implementation
+│   ├── fm_swarm/               # Swarm implementation
+│   ├── fm_taskweaver/          # TaskWeaver implementation
+│   └── fm_upsonic/             # Upsonic implementation
 ├── analysis/             # Analysis directory
 │   ├── analysis.ipynb    # Multi-dataset analysis and visualization notebook
 │   ├── detailed_results.csv # Exported detailed results
