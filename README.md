@@ -59,7 +59,7 @@ The system supports multiple reasoning datasets through a modular loader archite
 
 The figure below presents a trade-off comparison of the evaluated agentic frameworks. It shows the **mean accuracy across the three benchmarks** for each framework, together with the **average time per task** and **average cost per task**. This provides an overview of framework performance in terms of **accuracy, efficiency, and computational cost**.
 
-
+figures/Trads_off_final_1-1.png
 
 ## Repository Structure
 
