@@ -1,11 +1,11 @@
 [project]
 name = "fm-superagi"
 version = "0.1.0"
-description = "Add your description here"
+description = "SuperAGI benchmark integration (calls a self-hosted SuperAGI instance over its REST API)"
 requires-python = ">=3.12.11"
 dependencies = [
-    "superagi>=0.0.26",
+    "requests>=2.31.0",
+    "psycopg2-binary>=2.9.9",
     "datasets==3.6.0",
-    "openai>=1.99.1",
 ]
 setup = "ready"
