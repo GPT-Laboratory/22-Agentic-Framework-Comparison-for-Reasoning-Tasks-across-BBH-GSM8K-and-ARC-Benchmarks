@@ -106,7 +106,7 @@ def run_evaluation(dataset_name="bbh", mode="sample", continue_run=False, existi
     
     try:
         # Process all questions using utils iterator
-        for prompt, metadata in dataset_mgr.get_evaluation_iterator("Mastra", "gpt-4.1-mini", continue_run, existing_file):
+        for prompt, metadata in dataset_mgr.get_evaluation_iterator("Mastra", "gpt-5.2", continue_run, existing_file):
             # ONLY framework-specific part: model inference
             try:
                 raw_agent_output = call_mastra_agent(prompt, port, system_prompt)

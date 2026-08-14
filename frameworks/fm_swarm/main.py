@@ -20,11 +20,11 @@ def run_evaluation(dataset_name="bbh", mode="sample", continue_run=False, existi
     agent = Agent(
         name="problem_solver",
         instructions=system_prompt,
-        model="gpt-4.1-mini"
+        model="gpt-5.2"
     )
     
     # Process all questions using utils iterator
-    for prompt, metadata in dataset_mgr.get_evaluation_iterator("Swarm", "gpt-4.1-mini", continue_run, existing_file):
+    for prompt, metadata in dataset_mgr.get_evaluation_iterator("Swarm", "gpt-5.2", continue_run, existing_file):
         # ONLY framework-specific part: model inference
         try:
             response = client.run(

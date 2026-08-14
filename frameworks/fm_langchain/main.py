@@ -15,11 +15,11 @@ def run_evaluation(dataset_name="bbh", mode="sample", continue_run=False, existi
     
     # Initialize LangChain model - ONLY framework-specific part
     print("🔧 Initializing LangChain model...")
-    model = init_chat_model("gpt-4.1-mini", model_provider="openai", temperature=0.0)
+    model = init_chat_model("gpt-5.2", model_provider="openai", temperature=0.0)
     system_prompt = dataset_mgr.get_system_prompt()
 
     # Process all questions using utils iterator
-    for prompt, metadata in dataset_mgr.get_evaluation_iterator("LangChain", "gpt-4.1-mini", continue_run, existing_file):
+    for prompt, metadata in dataset_mgr.get_evaluation_iterator("LangChain", "gpt-5.2", continue_run, existing_file):
         # ONLY framework-specific part: model inference
         try:
             # Create chat messages with system prompt

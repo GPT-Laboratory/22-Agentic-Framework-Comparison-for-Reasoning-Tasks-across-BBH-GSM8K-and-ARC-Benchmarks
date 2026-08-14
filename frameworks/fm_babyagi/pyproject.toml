@@ -1,11 +1,11 @@
 [project]
 name = "fm_babyagi"
 version = "0.1.0"
-description = "BabyAGI framework for BBH benchmarking"
+description = "BabyAGI framework for BBH benchmarking (uses the real pip-installed babyagi package's react_agent function, https://github.com/yoheinakajima/babyagi)"
 dependencies = [
     "datasets",
-    "requests", 
+    "requests",
     "pyyaml",
-    "openai"
+    "babyagi",
 ]
 setup = "ready"

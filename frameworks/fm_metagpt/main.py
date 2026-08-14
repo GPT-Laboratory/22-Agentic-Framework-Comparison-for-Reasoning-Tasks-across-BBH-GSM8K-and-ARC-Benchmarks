@@ -26,7 +26,7 @@ async def run_evaluation(dataset_name="bbh", mode="sample", continue_run=False, 
     local_config_file = local_config_dir / "config2.yaml"
     
     api_key = os.environ.get('OPENAI_API_KEY', '')
-    model = os.environ.get('BENCHMARK_MODEL', "gpt-4o-mini")
+    model = os.environ.get('BENCHMARK_MODEL', "gpt-5.2")
     
     config_content = f"""llm:
   api_type: "openai"

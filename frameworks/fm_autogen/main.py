@@ -18,7 +18,7 @@ async def run_evaluation(dataset_name="bbh", mode="sample", continue_run=False, 
     # Initialize AutoGen model - ONLY framework-specific part
     print("🔧 Initializing AutoGen model...")
     system_prompt = dataset_mgr.get_system_prompt()
-    model_client = OpenAIChatCompletionClient(model="gpt-4.1-mini", temperature=0.0)
+    model_client = OpenAIChatCompletionClient(model="gpt-5.2", temperature=0.0)
     agent = AssistantAgent(
         name="dataset_solver",
         model_client=model_client,
@@ -26,7 +26,7 @@ async def run_evaluation(dataset_name="bbh", mode="sample", continue_run=False, 
     )
     
     # Process all questions using utils iterator
-    for prompt, metadata in dataset_mgr.get_evaluation_iterator("AutoGen", "gpt-4.1-mini", continue_run, existing_file):
+    for prompt, metadata in dataset_mgr.get_evaluation_iterator("AutoGen", "gpt-5.2", continue_run, existing_file):
         # ONLY framework-specific part: model inference
         try:
             task_result = await agent.run(task=prompt)

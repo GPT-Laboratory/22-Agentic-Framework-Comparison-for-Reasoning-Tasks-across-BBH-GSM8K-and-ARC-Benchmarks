@@ -18,13 +18,13 @@ def run_evaluation(dataset_name="bbh", mode="sample", continue_run=False, existi
     system_prompt = dataset_mgr.get_system_prompt()
     agent = Agent(
         instructions=system_prompt,
-        llm="gpt-4.1-mini",
+        llm="gpt-5.2",
         self_reflect=False,
         verbose=False
     )
     
     # Process all questions using utils iterator
-    for prompt, metadata in dataset_mgr.get_evaluation_iterator("PraisonAI", "gpt-4.1-mini", continue_run, existing_file):
+    for prompt, metadata in dataset_mgr.get_evaluation_iterator("PraisonAI", "gpt-5.2", continue_run, existing_file):
         # ONLY framework-specific part: model inference
         try:
             result = agent.start(prompt)

@@ -19,7 +19,7 @@ def run_evaluation(dataset_name="bbh", mode="sample", continue_run=False, existi
 
     # Initialize LangGraph model - ONLY framework-specific part
     print("🔧 Initializing LangGraph model...")
-    model = init_chat_model("gpt-4.1-mini", model_provider="openai", temperature=0.0)
+    model = init_chat_model("gpt-5.2", model_provider="openai", temperature=0.0)
     
     # Create ReAct agent with LangGraph
     agent = create_react_agent(
@@ -29,7 +29,7 @@ def run_evaluation(dataset_name="bbh", mode="sample", continue_run=False, existi
     )
     
     # Process all questions using utils iterator
-    for prompt, metadata in dataset_mgr.get_evaluation_iterator("LangGraph", "gpt-4.1-mini", continue_run, existing_file):
+    for prompt, metadata in dataset_mgr.get_evaluation_iterator("LangGraph", "gpt-5.2", continue_run, existing_file):
         # ONLY framework-specific part: model inference
         try:
             response = agent.invoke({"messages": [{"role": "user", "content": prompt}]})

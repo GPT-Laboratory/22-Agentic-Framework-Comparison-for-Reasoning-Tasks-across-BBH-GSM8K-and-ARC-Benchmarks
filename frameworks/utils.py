@@ -428,7 +428,7 @@ Extracted answer:"""
                 json={
                     "model": model,
                     "messages": messages,
-                    "max_completion_tokens": max_tokens,
+                    ("max_completion_tokens" if model.startswith(("gpt-5", "o1", "o3", "o4")) else "max_tokens"): max_tokens,
                     "temperature": temperature
                 },
                 timeout=timeout

@@ -33,7 +33,7 @@ datasets:
     target_field: "target"
     extraction:
       model: "gpt-5.2"
-      max_tokens: 224
+      max_tokens: 1200
       temperature: 0
       timeout: 500
 
@@ -58,7 +58,7 @@ datasets:
     target_field: "answer"
     extraction:
       model: "gpt-5.2"
-      max_tokens: 256
+      max_tokens: 1200
       temperature: 0
       timeout: 500
 
@@ -84,6 +84,6 @@ datasets:
     target_field: "answerKey"
     extraction:
       model: "gpt-5.2"
-      max_tokens: 224
+      max_tokens: 1024
       temperature: 0
       timeout: 500

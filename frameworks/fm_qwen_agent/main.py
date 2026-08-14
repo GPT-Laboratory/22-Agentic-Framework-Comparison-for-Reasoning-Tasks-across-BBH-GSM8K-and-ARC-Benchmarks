@@ -18,7 +18,7 @@ def run_evaluation(dataset_name="bbh", mode="sample", continue_run=False, existi
     print("🔧 Initializing Qwen-Agent model...")
     system_prompt = dataset_mgr.get_system_prompt()
     llm_cfg = {
-        'model': 'gpt-4.1-mini',
+        'model': 'gpt-5.2',
         'model_server': 'https://api.openai.com/v1',
         'api_key': os.getenv('OPENAI_API_KEY')
     }
@@ -29,7 +29,7 @@ def run_evaluation(dataset_name="bbh", mode="sample", continue_run=False, existi
     )
     
     # Process all questions using utils iterator
-    for prompt, metadata in dataset_mgr.get_evaluation_iterator("Qwen-Agent", "gpt-4.1-mini", continue_run, existing_file):
+    for prompt, metadata in dataset_mgr.get_evaluation_iterator("Qwen-Agent", "gpt-5.2", continue_run, existing_file):
         # ONLY framework-specific part: model inference
         try:
             messages = [{"role": "user", "content": prompt}]

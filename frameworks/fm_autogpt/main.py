@@ -40,7 +40,7 @@ class AutoGPTAgent(Agent):
             # Make chat completion request using AutoGPT's method
             chat_response = await chat_completion_request(
                 messages=messages,
-                model="gpt-4.1-mini",
+                model="gpt-5.2",
             )
             
             # Extract response text
@@ -71,7 +71,7 @@ def run_evaluation(dataset_name="bbh", mode="sample", continue_run=False, existi
     
     # Process all questions using utils iterator
     async def process_questions():
-        for prompt, metadata in dataset_mgr.get_evaluation_iterator("AutoGPT", "gpt-4.1-mini", continue_run, existing_file):
+        for prompt, metadata in dataset_mgr.get_evaluation_iterator("AutoGPT", "gpt-5.2", continue_run, existing_file):
             # ONLY framework-specific part: model inference
             try:
                 # Create a task for AutoGPT agent

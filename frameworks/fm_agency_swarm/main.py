@@ -20,16 +20,16 @@ def run_evaluation(dataset_name="bbh", mode="sample", continue_run=False, existi
         name="BBHSolver",
         description="Expert reasoning agent specialized in solving complex logical, mathematical, and analytical problems step-by-step.",
         instructions=system_prompt,
-        model="gpt-4.1-mini",
+        model="gpt-5.2",
         temperature=0.0,
-        max_prompt_tokens=25000,
+        max_prompt_tokens=1200,
         tools=[]
     )
     
     agency = Agency([bbh_solver])
     
     # Process all questions using utils iterator
-    for prompt, metadata in dataset_mgr.get_evaluation_iterator("Agency Swarm", "gpt-4.1-mini", continue_run, existing_file):
+    for prompt, metadata in dataset_mgr.get_evaluation_iterator("Agency Swarm", "gpt-5.2", continue_run, existing_file):
         # ONLY framework-specific part: model inference
         try:
             response = agency.get_completion(

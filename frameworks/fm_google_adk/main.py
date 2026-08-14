@@ -15,7 +15,7 @@ async def create_google_adk_agent(system_prompt):
         from google.genai import types
 
         # Create LiteLLM model instance
-        model = LiteLlm(model="gpt-4.1-mini")
+        model = LiteLlm(model="gpt-5.2")
 
         # Create agent with reasoning instructions
         agent = Agent(
@@ -83,7 +83,7 @@ async def run_evaluation(dataset_name="bbh", mode="sample", continue_run=False, 
     agent = await create_google_adk_agent(system_prompt)
     
     # Process all questions using utils iterator
-    for prompt, metadata in dataset_mgr.get_evaluation_iterator("Google ADK", "gpt-4.1-mini", continue_run, existing_file):
+    for prompt, metadata in dataset_mgr.get_evaluation_iterator("Google ADK", "gpt-5.2", continue_run, existing_file):
         # ONLY framework-specific part: model inference
         raw_agent_output = await query_google_adk_agent(agent, prompt)
         

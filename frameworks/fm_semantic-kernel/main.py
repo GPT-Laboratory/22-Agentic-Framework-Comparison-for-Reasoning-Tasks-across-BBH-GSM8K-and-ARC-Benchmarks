@@ -22,12 +22,12 @@ def run_evaluation(dataset_name="bbh", mode="sample", continue_run=False, existi
     kernel = Kernel()
     chat_completion = OpenAIChatCompletion(
         service_id="chat-gpt",
-        ai_model_id="gpt-4.1-mini"
+        ai_model_id="gpt-5.2"
     )
     kernel.add_service(chat_completion)
     
     # Process all questions using utils iterator
-    for prompt, metadata in dataset_mgr.get_evaluation_iterator("Semantic Kernel", "gpt-4.1-mini", continue_run, existing_file):
+    for prompt, metadata in dataset_mgr.get_evaluation_iterator("Semantic Kernel", "gpt-5.2", continue_run, existing_file):
         # ONLY framework-specific part: model inference
         try:
             history = ChatHistory()

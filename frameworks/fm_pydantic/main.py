@@ -17,12 +17,12 @@ def run_evaluation(dataset_name="bbh", mode="sample", continue_run=False, existi
     print("🔧 Initializing Pydantic AI agent...")
     system_prompt = dataset_mgr.get_system_prompt()
     agent = Agent(
-        'openai:gpt-4.1-mini',
+        'openai:gpt-5.2',
         system_prompt=system_prompt
     )
     
     # Process all questions using utils iterator
-    for prompt, metadata in dataset_mgr.get_evaluation_iterator("Pydantic AI", "gpt-4.1-mini", continue_run, existing_file):
+    for prompt, metadata in dataset_mgr.get_evaluation_iterator("Pydantic AI", "gpt-5.2", continue_run, existing_file):
         # ONLY framework-specific part: model inference
         try:
             response = agent.run_sync(prompt)

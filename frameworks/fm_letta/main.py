@@ -59,7 +59,7 @@ def run_evaluation(dataset_name="bbh", mode="sample", continue_run=False, existi
     client = create_letta_client()
     
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    model_name = "gpt-4.1-mini"  # Default model for Letta
+    model_name = "gpt-5.2"  # Default model for Letta
     
     print("🧠 Creating Letta agent for evaluation...")
     try:

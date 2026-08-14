@@ -36,5 +36,24 @@
         },
         "top_p": 1.0,
         "reasoning_effort": null
+    },
+    {
+        "id": "asst_sa7c4Sbc1hWiu6jrKc9KUnDf",
+        "created_at": 1769414566,
+        "description": "Test agent for validation",
+        "instructions": "You are a test agent.",
+        "metadata": {},
+        "model": "gpt-4o-mini",
+        "name": "TestAgent",
+        "object": "assistant",
+        "tools": [],
+        "response_format": "auto",
+        "temperature": 0.3,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0,
+        "reasoning_effort": null
     }
 ]
