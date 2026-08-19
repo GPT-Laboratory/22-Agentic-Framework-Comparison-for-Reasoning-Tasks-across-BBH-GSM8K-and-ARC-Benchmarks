@@ -2,16 +2,40 @@ import sys
 import os
 import subprocess
 import shutil
+import time
 
 # Import ultra-clean dataset utilities
 sys.path.append('..')
 from utils import DatasetManager
 
+# ---------------------------------------------------------------------------
+# ANUS (https://github.com/anus-dev/ANUS, npm package @anus-dev/anus) is a
+# real, complete Node.js CLI coding agent - a fork of Google's gemini-cli,
+# repurposed to call xAI's Grok models by default. This script calls the
+# real ANUS CLI as a subprocess, non-interactively, redirected to real
+# OpenAI (GROK_BASE_URL/GROK_API_KEY/GROK_MODEL all genuinely configurable -
+# not a hack, ANUS is built on the standard OpenAI SDK client throughout).
+#
+# See _call_anus() below for a retry wrapper around a transient,
+# internal ANUS/Node.js error observed after many repeated invocations from
+# a parent script (confirmed NOT a system file-descriptor limit issue).
+# ---------------------------------------------------------------------------
 
 ANUS_MODEL = os.getenv("BENCHMARK_MODEL") or os.getenv("ANUS_MODEL", "gpt-5.2")
 ANUS_BASE_URL = os.getenv("ANUS_BASE_URL", "https://api.openai.com/v1")
 ANUS_TIMEOUT_SEC = float(os.getenv("ANUS_TIMEOUT_SEC", "500"))
 ANUS_CLI_PATH = os.getenv("ANUS_CLI_PATH", "anus")
+
+# How many times to retry a single question if ANUS's own CLI process exits
+# with a transient, internal error (observed: "EBADF: bad file descriptor,
+# read" - confirmed NOT caused by system file-descriptor limits: manual
+# single invocations always succeed even immediately after a failure, and
+# both `ulimit -n` and macOS's kernel-wide kern.maxfiles/kern.maxfilesperproc
+# were confirmed generous and non-exhausted. This appears to be a real,
+# internal bug in the ANUS/Node.js process when spawned repeatedly by a
+# parent script - a short retry recovers cleanly every time observed so far.
+ANUS_MAX_RETRIES = int(os.getenv("ANUS_MAX_RETRIES", "3"))
+ANUS_RETRY_DELAY_SEC = float(os.getenv("ANUS_RETRY_DELAY_SEC", "2"))
 
 
 def _check_cli_available():
@@ -22,24 +46,13 @@ def _check_cli_available():
         )
 
 
-def _write_anus_md(system_prompt):
-    """ANUS's own documented feature ('Project-Aware Context: Uses a local
-    ANUS.md file to retain project-specific goals and instructions') is the
-    real mechanism for giving it a persistent system-level instruction -
-    used here instead of folding the shared benchmark system prompt into
-    every per-question message, for consistency with how other frameworks
-    apply a fixed system-level instruction throughout a run."""
-    with open("ANUS.md", "w") as f:
-        f.write(system_prompt)
-
-
-def _call_anus(prompt):
-    """Runs the ANUS CLI once, non-interactively, redirected to OpenAI.
+def _call_anus_once(system_prompt, prompt):
+    """Runs the real ANUS CLI once, non-interactively, redirected to OpenAI.
 
     --approval-mode yolo auto-approves any tool use so an automated
-    benchmark run never hangs waiting for interactive confirmation. The
-    shared system prompt is not folded into this message - see
-    _write_anus_md() above."""
+    benchmark run never hangs waiting for interactive confirmation."""
+    full_message = f"{system_prompt}\n\n{prompt}"
+
     env = os.environ.copy()
     openai_key = os.getenv("OPENAI_API_KEY")
     if not openai_key:
@@ -50,11 +63,12 @@ def _call_anus(prompt):
 
     try:
         result = subprocess.run(
-            [ANUS_CLI_PATH, "--model", ANUS_MODEL, "--approval-mode", "yolo", "--prompt", prompt],
+            [ANUS_CLI_PATH, "--model", ANUS_MODEL, "--approval-mode", "yolo", "--prompt", full_message],
             env=env,
             capture_output=True,
             text=True,
             timeout=ANUS_TIMEOUT_SEC,
+            stdin=subprocess.DEVNULL,
         )
         if result.returncode != 0:
             return f"MODEL_ERROR: ANUS exited with code {result.returncode}: {result.stderr.strip()[:500]}"
@@ -64,6 +78,26 @@ def _call_anus(prompt):
         return f"MODEL_ERROR: ANUS timed out after {ANUS_TIMEOUT_SEC}s"
     except Exception as e:
         return f"MODEL_ERROR: {e}"
+
+
+def _call_anus(system_prompt, prompt):
+    """Wraps _call_anus_once with a short retry loop specifically for the
+    transient EBADF failure pattern described above. Any other kind of
+    MODEL_ERROR (timeout, real API error, etc.) is returned immediately
+    without retrying, since retrying those would not help and would just
+    waste time."""
+    last_result = None
+    for attempt in range(1, ANUS_MAX_RETRIES + 1):
+        result = _call_anus_once(system_prompt, prompt)
+        last_result = result
+        if not result.startswith("MODEL_ERROR"):
+            return result
+        if "EBADF" not in result and "bad file descriptor" not in result:
+            return result
+        if attempt < ANUS_MAX_RETRIES:
+            print(f"    ANUS hit a transient EBADF error, retrying ({attempt}/{ANUS_MAX_RETRIES})...")
+            time.sleep(ANUS_RETRY_DELAY_SEC)
+    return last_result
 
 
 def run_evaluation(dataset_name="bbh", mode="sample", continue_run=False, existing_file=None):
@@ -81,11 +115,9 @@ def run_evaluation(dataset_name="bbh", mode="sample", continue_run=False, existi
         raise
 
     system_prompt = dataset_mgr.get_system_prompt()
-    _write_anus_md(system_prompt)
-    print("✅ Wrote shared system prompt to ANUS.md (ANUS's own project-context mechanism)")
 
     for prompt, metadata in dataset_mgr.get_evaluation_iterator("ANUS", ANUS_MODEL, continue_run, existing_file):
-        raw_agent_output = _call_anus(prompt)
+        raw_agent_output = _call_anus(system_prompt, prompt)
         dataset_mgr.process_result(raw_agent_output, metadata)
 
     return dataset_mgr.finalize_evaluation()
