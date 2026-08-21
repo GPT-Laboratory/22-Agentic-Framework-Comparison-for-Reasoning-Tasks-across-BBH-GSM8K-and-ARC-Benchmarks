@@ -50,10 +50,27 @@ fi
 echo "🔧 Patching ANUS's bundled max_tokens -> max_completion_tokens for gpt-5.x/o1/o3/o4 models..."
 echo "   (This lives in an npm-installed file and must be reapplied after any reinstall/update -"
 echo "   that's why this patch step runs automatically every time setup.sh runs.)"
-ANUS_BUNDLE_PATH=$(dirname "$(dirname "$(readlink -f "$(command -v anus)" 2>/dev/null || command -v anus)")")/lib/node_modules/@anus-dev/anus/bundle/anus.js
-if [ ! -f "$ANUS_BUNDLE_PATH" ]; then
-    # Fallback: try common global npm prefix locations
-    for candidate in "/opt/homebrew/lib/node_modules/@anus-dev/anus/bundle/anus.js" "/usr/local/lib/node_modules/@anus-dev/anus/bundle/anus.js"; do
+# `npm root -g` is the authoritative source for where global packages live -
+# unlike deriving it from the `anus` bin's symlink target, it's correct
+# regardless of install layout (nvm, homebrew, system npm, etc.).
+ANUS_BUNDLE_PATH=""
+if command -v npm &> /dev/null; then
+    NPM_GLOBAL_ROOT=$(npm root -g 2>/dev/null)
+    if [ -n "$NPM_GLOBAL_ROOT" ] && [ -f "$NPM_GLOBAL_ROOT/@anus-dev/anus/bundle/anus.js" ]; then
+        ANUS_BUNDLE_PATH="$NPM_GLOBAL_ROOT/@anus-dev/anus/bundle/anus.js"
+    fi
+fi
+
+if [ -z "$ANUS_BUNDLE_PATH" ]; then
+    # Fallback: derive from the anus bin's resolved symlink target. Works when
+    # `readlink -f` resolves straight to the bundle file (some installs), or
+    # to a bin/ wrapper two directories below the npm prefix (others).
+    RESOLVED_ANUS=$(readlink -f "$(command -v anus)" 2>/dev/null || command -v anus)
+    for candidate in \
+        "$RESOLVED_ANUS" \
+        "$(dirname "$(dirname "$RESOLVED_ANUS")")/lib/node_modules/@anus-dev/anus/bundle/anus.js" \
+        "/opt/homebrew/lib/node_modules/@anus-dev/anus/bundle/anus.js" \
+        "/usr/local/lib/node_modules/@anus-dev/anus/bundle/anus.js"; do
         if [ -f "$candidate" ]; then
             ANUS_BUNDLE_PATH="$candidate"
             break

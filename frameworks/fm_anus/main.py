@@ -46,6 +46,11 @@ def _check_cli_available():
         )
 
 
+# ANUS always prints this banner line on stdout before anything else,
+# regardless of whether it goes on to produce a real answer.
+_ANUS_BANNER_LINES = {"Data collection is disabled."}
+
+
 def _call_anus_once(system_prompt, prompt):
     """Runs the real ANUS CLI once, non-interactively, redirected to OpenAI.
 
@@ -72,8 +77,25 @@ def _call_anus_once(system_prompt, prompt):
         )
         if result.returncode != 0:
             return f"MODEL_ERROR: ANUS exited with code {result.returncode}: {result.stderr.strip()[:500]}"
-        output = result.stdout.strip()
-        return output if output else "MODEL_ERROR: empty output from ANUS"
+
+        output_lines = [
+            line for line in result.stdout.strip().splitlines()
+            if line.strip() not in _ANUS_BANNER_LINES
+        ]
+        output = "\n".join(output_lines).strip()
+        if output:
+            return output
+
+        # ANUS exited 0 but produced nothing beyond its startup banner. Seen when
+        # an internal ANUS API call (its "checkNextSpeaker" continuation check)
+        # fails before ANUS ever generates an answer - e.g. GPT-5-family models
+        # reject the max_tokens param ANUS hardcodes there ("Unsupported
+        # parameter: 'max_tokens' ... Use 'max_completion_tokens' instead").
+        # Surface this as a MODEL_ERROR instead of silently recording the banner
+        # text as the agent's answer, which just shows up downstream as a
+        # confusing "Failed extraction" with no explanation.
+        stderr_excerpt = result.stderr.strip()[:500]
+        return f"MODEL_ERROR: ANUS produced no answer (exit 0, only banner output). stderr: {stderr_excerpt}"
     except subprocess.TimeoutExpired:
         return f"MODEL_ERROR: ANUS timed out after {ANUS_TIMEOUT_SEC}s"
     except Exception as e:
