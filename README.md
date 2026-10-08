@@ -48,15 +48,6 @@ The system supports multiple reasoning datasets through a modular loader archite
 - **Multiple choice format** with detailed explanations
 - **Focus**: Elementary and middle-school level science reasoning
 
-## 🎯 Performance Overview
-
-### Multi-Dataset Analysis Results
-
-The figure below presents a trade-off comparison of the evaluated agentic frameworks. It shows the **mean accuracy across the three benchmarks** for each framework, together with the **average time per task** and **average cost per task**. This provides an overview of framework performance in terms of **accuracy, efficiency, and computational cost**.
-
-<p align="center">
-  <img src="figure/Average_time_Cost_1.png" alt="Agentic frameworks trade-off comparison" width="900"/>
-</p>
 
 ## Repository Structure
 
@@ -204,17 +195,13 @@ frameworks_to_run:
 # Select datasets to run  
 datasets_to_run:
   - "bbh"      # Big Bench Hard
-  - "gsm8k"    # Grade School Math 8K
   - "arc"      # AI2 Reasoning Challenge
 
 commons:
   sample_mode: true          # true: sample mode, false: full evaluation
   continue_mode: false       # true: continue from latest results
-  model: "gpt-4.1-mini"      # default model
+  model: "gpt-5.2"      # default model
 
-frameworks:
-  fm_agentzero:
-    model: "gpt-4.1-mini"    # per-framework overrides
 ```
 
 **datasets.yml** - Dataset-specific configurations:
@@ -265,10 +252,6 @@ uv run main.py --dataset=bbh [--full] [--continue] # Run with specific dataset
 
 ### Common Issues
 
-**Setup failures:** If `scripts/setup.sh` fails for specific frameworks:
-1. Check the detailed logs in `logs/setup_<timestamp>.log`
-2. [Create a GitHub issue](../../issues/new) with the error details and log files
-
 **Runtime failures:** If `./run.sh` fails during evaluation:
 1. Check execution logs in `logs/run_<timestamp>/`
 2. Each framework has individual log files showing detailed execution traces
@@ -310,16 +293,18 @@ To add a new framework manually:
 
 ## Evaluation Methodology
 
-- **Multi-Dataset Support**: Configurable datasets (BBH, GSM8K, ARC) with dataset-specific loaders
+- **Multi-Dataset Support**: Configurable datasets (BBH, ARC) with dataset-specific loaders
 - **Prompting**: Configurable few-shot examples with optional chain-of-thought reasoning
 - **Answer Extraction**: OpenAI API for consistent answer parsing across datasets
 - **Scoring**: Exact match against ground truth labels
 - **Modes**: Sample mode for development, full mode for complete evaluation
 - **Modular Architecture**: Dataset-agnostic framework implementations using shared utilities
 
-> **Note**: This benchmarking system provides a standardized way to compare how different agentic frameworks handle various reasoning challenges across multiple datasets. While individual datasets may have limitations for framework evaluation, the multi-dataset approach provides broader insights into framework capabilities across different reasoning domains.
+> **Note_1**: This benchmarking system provides a standardized way to compare how different agentic frameworks handle various reasoning challenges across multiple datasets. While individual datasets may have limitations for framework evaluation, the multi-dataset approach provides broader insights into framework capabilities across different reasoning domains.
 >
-> **Extensibility**: The modular loader architecture makes it easy to add new datasets beyond the current BBH, GSM8K, and ARC support. 
+> **Note_2**: The execution setup for **SuperAGI, Agent-Zero, BabyAGI, and ANUS** differs from the other frameworks because these frameworks rely on **Docker-based environments**. Their setup and execution procedures are therefore provided separately in the README file located inside each framework's own folder under the `Frameworks` directory.
+> **Extensibility**: The modular loader architecture makes it easy to add new datasets beyond the current BBH and ARC support. 
+
 
 
 ## Citation
