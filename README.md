@@ -42,11 +42,6 @@ The system supports multiple reasoning datasets through a modular loader archite
 - **Task types**: Boolean logic, causal reasoning, temporal understanding, object tracking
 - **Sample tasks**: `boolean_expressions`, `causal_judgement`, `date_understanding`, `logical_deduction_*`
 
-### **Grade School Math 8K (GSM8K)**
-- **Mathematical word problems** requiring multi-step arithmetic reasoning  
-- **8,500 training samples** with natural language solutions
-- **Focus**: Elementary-level math with step-by-step problem solving
-
 ### **AI2 Reasoning Challenge (ARC)**
 - **Science exam questions** testing scientific reasoning
 - **ARC-Easy and ARC-Challenge** subsets with varying difficulty
@@ -60,7 +55,7 @@ The system supports multiple reasoning datasets through a modular loader archite
 The figure below presents a trade-off comparison of the evaluated agentic frameworks. It shows the **mean accuracy across the three benchmarks** for each framework, together with the **average time per task** and **average cost per task**. This provides an overview of framework performance in terms of **accuracy, efficiency, and computational cost**.
 
 <p align="center">
-  <img src="figures/Trads_off_final_1-1.png" alt="Agentic frameworks trade-off comparison" width="900"/>
+  <img src="figure/Average_time_Cost (1)" alt="Agentic frameworks trade-off comparison" width="900"/>
 </p>
 
 ## Repository Structure
